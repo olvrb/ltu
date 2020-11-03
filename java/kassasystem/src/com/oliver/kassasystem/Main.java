@@ -1,23 +1,59 @@
 package com.oliver.kassasystem;
 
-import javax.sound.midi.SysexMessage;
+import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
-	// write your code here
+    public static void main (String[] args) {
+        Scanner scan = new Scanner(System.in);
+        Change change = new Change();
 
-        System.out.println("Hello, World!");
-        System.out.println("Hello, World!");
+        int i = scan.nextInt();
+        int j = scan.nextInt() - i;
 
+        while (i >= 1000) {
+            change.Tusen++;
 
-        for (int i = 0; i < 10; i++) {
-            System.out.println(fibonacci(i));
+            i -= 1000;
         }
-    }
 
-    static int fibonacci(int n) {
-        if (n <= 1) return n;
-        return fibonacci(n - 1) + fibonacci(n - 2);
+        while (i >= 500) {
+            change.FemHundra++;
+
+            i -= 500;
+        }
+
+        while (i >= 200) {
+            change.TvaHundra++;
+
+            i -= 200;
+        }
+
+        while (i >= 100) {
+            change.EttHundra++;
+            i -= 100;
+        }
+        while (i >= 50) {
+            change.Femtio++;
+
+            i -= 50;
+        }
+        while (i >= 20) {
+            change.Tjugio++;
+
+            i -= 20;
+        }
+        while (i >= 2) {
+            change.Tva++;
+
+            i -= 2;
+        }
+        while (i >= 1) {
+            change.Ett++;
+            i--;
+        }
+
+        System.out.println(change);
+
     }
 }
