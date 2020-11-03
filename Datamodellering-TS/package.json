@@ -1,0 +1,16 @@
+{
+    "dependencies": {
+        "@types/node": "^14.6.4",
+        "mysql2": "^2.1.0",
+        "reflect-metadata": "^0.1.13",
+        "sqlite3": "^5.0.0",
+        "typeorm": "^0.2.25"
+    },
+    "scripts": {
+        "start": "node dist/Index.js",
+        "build": "tsc -p .",
+        "dev": "yarn build && yarn start",
+        "lint": "tslint -p .",
+        "lint-and-fix": "tslint -p . --fix"
+    }
+}
