@@ -4,11 +4,29 @@
     <projectFile>linked-list.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="657305b9-e00a-4c9b-a946-d965888d6c39" name="Default Changelist" comment="" />
+    <list default="true" id="657305b9-e00a-4c9b-a946-d965888d6c39" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../java/factorial 2/.idea/factorial 2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/.idea/description.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/.idea/project-template.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/kassasystem2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.linked-list/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.linked-list/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/factorial 2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/factorial 2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/factorial/src/com/oliver/factorial2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/factorial/src/com/oliver/factorial2/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -20,6 +38,7 @@
     </option>
   </component>
   <component name="ProjectId" id="1jH7wshSI6emtMbMFGLUbCHpV4C" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -61,6 +80,7 @@
       <updated>1603449407384</updated>
       <workItem from="1603449412556" duration="1607000" />
       <workItem from="1603792363586" duration="4060000" />
+      <workItem from="1605216654293" duration="559000" />
     </task>
     <servers />
   </component>
@@ -72,22 +92,26 @@
       <screen x="0" y="23" width="2048" height="1257" />
     </state>
     <state x="782" y="518" key="ANALYSIS_DLG_com.jetbrains.rider.actions.impl.cleanup.RiderCodeCleanupAction$actionPerformed$dlg$1/0.23.2048.1257@0.23.2048.1257" timestamp="1603797498442" />
-    <state width="2006" height="465" key="GridCell.Tab.0.bottom" timestamp="1603798803049">
+    <state width="2006" height="356" key="GridCell.Tab.0.bottom" timestamp="1605217225990">
       <screen x="0" y="23" width="2048" height="1257" />
     </state>
     <state width="2006" height="465" key="GridCell.Tab.0.bottom/0.23.2048.1257@0.23.2048.1257" timestamp="1603798803049" />
-    <state width="2006" height="465" key="GridCell.Tab.0.center" timestamp="1603798803049">
+    <state width="2006" height="356" key="GridCell.Tab.0.bottom/2048.-234.1920.1057/0.23.2048.1257@0.23.2048.1257" timestamp="1605217225990" />
+    <state width="2006" height="356" key="GridCell.Tab.0.center" timestamp="1605217225990">
       <screen x="0" y="23" width="2048" height="1257" />
     </state>
     <state width="2006" height="465" key="GridCell.Tab.0.center/0.23.2048.1257@0.23.2048.1257" timestamp="1603798803049" />
-    <state width="2006" height="465" key="GridCell.Tab.0.left" timestamp="1603798803049">
+    <state width="2006" height="356" key="GridCell.Tab.0.center/2048.-234.1920.1057/0.23.2048.1257@0.23.2048.1257" timestamp="1605217225990" />
+    <state width="2006" height="356" key="GridCell.Tab.0.left" timestamp="1605217225990">
       <screen x="0" y="23" width="2048" height="1257" />
     </state>
     <state width="2006" height="465" key="GridCell.Tab.0.left/0.23.2048.1257@0.23.2048.1257" timestamp="1603798803049" />
-    <state width="2006" height="465" key="GridCell.Tab.0.right" timestamp="1603798803049">
+    <state width="2006" height="356" key="GridCell.Tab.0.left/2048.-234.1920.1057/0.23.2048.1257@0.23.2048.1257" timestamp="1605217225990" />
+    <state width="2006" height="356" key="GridCell.Tab.0.right" timestamp="1605217225990">
       <screen x="0" y="23" width="2048" height="1257" />
     </state>
     <state width="2006" height="465" key="GridCell.Tab.0.right/0.23.2048.1257@0.23.2048.1257" timestamp="1603798803049" />
+    <state width="2006" height="356" key="GridCell.Tab.0.right/2048.-234.1920.1057/0.23.2048.1257@0.23.2048.1257" timestamp="1605217225990" />
     <state width="2006" height="465" key="GridCell.Tab.1.bottom" timestamp="1603798803050">
       <screen x="0" y="23" width="2048" height="1257" />
     </state>
