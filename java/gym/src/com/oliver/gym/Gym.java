@@ -1,6 +1,8 @@
 package com.oliver.gym;
 
 import java.util.*;
+import java.util.logging.XMLFormatter;
+import java.util.stream.Collectors;
 
 import static com.oliver.gym.PersonnummerUtils.*;
 
@@ -9,7 +11,7 @@ public class Gym {
         members.add(new Member("oliver", "boudet", "0204150072", 1));
         while (true) {
             PresentOptions(Actions);
-            switch (GetOption()) {
+            switch (GetOption(Actions)) {
                 case 0:
                     BliMedlem();
                     break;
@@ -17,12 +19,30 @@ public class Gym {
                     LogIn();
                     break;
                 case 2:
+                    ActivityBook();
                     break;
                 case 3:
+                    System.exit(0);
                     break;
             }
         }
 
+    }
+
+    private void ActivityBook() {
+        String[] actOpts = act.GetFormattedActivites();
+        PresentOptions(actOpts);
+        int i = GetOption(actOpts);
+        // Get activity at selected index
+        Activity selectedActivity = act.GetActivity(i);
+
+        String[] seatOpts = selectedActivity.GetFormattedAvailableSeats();
+        PresentOptions(seatOpts);
+        int j = GetOption(seatOpts);
+        Seat seat = selectedActivity.GetSeat(j);
+        seat.Available = false;
+
+        System.out.printf("Seat %s booked.", seat.Name);
     }
 
     private void BliMedlem() {
@@ -31,14 +51,19 @@ public class Gym {
         String name = GetValue("Enter name");
         String lastName = GetValue("Enter lastname");
         String pnr = GetPnr();
-        PresentOptions((String[])MembershipOptions.keySet().toArray());
-        int i = GetOption();
-        Integer price = null;
-        while (GetPriceForMonth(price) == null) {
-            price = GetOption();
+
+        // Get all membership options
+        ArrayList<String> options = new ArrayList<>();
+        for (int i = 0; i < MembershipDurations.length; i++) {
+            options.add(String.format("%s - %skr", MembershipDurations[i], MembershipPrices[i]));
         }
+        String[] optionsArr = options.toArray(new String[options.size()]);
+
+        PresentOptions(optionsArr);
+        int i = GetOption(optionsArr);
 
         members.add(new Member(name, lastName, pnr, i));
+        System.out.printf("New member paying %skr/month\n", MembershipPrices[i]);
     }
 
     private void LogIn() {
@@ -99,9 +124,9 @@ public class Gym {
         }
     }
 
-    private int GetOption() {
+    private int GetOption(String[] actions) {
         int option = -1;
-        while (!(option >= 0 && option < Actions.length)) {
+        while (!(option >= 0 && option < actions.length)) {
             System.out.print("Enter option: ");
             option = scan.nextInt();
         }
@@ -112,6 +137,7 @@ public class Gym {
     private Member CurrentMember;
     public final ArrayList<Member> members = new ArrayList<>();
     private final Scanner scan = new Scanner(System.in);
+    private final ActivityManager act = new ActivityManager();
 
     private static final String[] Actions = new String[] {
             "Bli Medlem",
@@ -125,4 +151,17 @@ public class Gym {
         put("7-12 months", 300);
         put("More than 12 months", 250);
     }};
+
+    private static final String[] MembershipDurations = {
+            "1-2 months",
+            "3-6 months",
+            "7-12 months",
+            "More than 13 months"
+    };
+    private static final int[] MembershipPrices = {
+            400,
+            250,
+            300,
+            250
+    };
 }
