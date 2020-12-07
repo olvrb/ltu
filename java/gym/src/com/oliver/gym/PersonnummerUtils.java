@@ -6,9 +6,11 @@ import java.util.Arrays;
 
 public class PersonnummerUtils {
     public static boolean CheckPnr(ArrayList<Integer> pnr) {
+        // Ta fram kontroll, sen ta bort
         int control = pnr.get(pnr.size() - 1);
         pnr.remove(pnr.size() - 1);
 
+        // gå igenom alla nummer och gångra med varannan med två
         int i = 0;
         while (i < pnr.size()) {
             if (i % 2 == 0) {
@@ -17,6 +19,7 @@ public class PersonnummerUtils {
             i++;
         }
 
+        // Dela på tal med 2 eller fler siffror, Addera alla siffror med varandra.
         int sum = 0;
         for (int j : pnr) {
             char[] nums = String.valueOf(j).toCharArray();
@@ -24,6 +27,9 @@ public class PersonnummerUtils {
                 sum += Character.getNumericValue(c);
             }
         }
+
+
+        // Summa + kontroll är delbart med 10.
         return (sum + control) % 10 == 0;
         // return Math.ceil(sum / 10.0) * 10 - sum == control;
     }

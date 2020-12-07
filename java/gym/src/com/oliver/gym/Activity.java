@@ -16,7 +16,7 @@ public class Activity {
         ArrayList<Seat> seats = new ArrayList<>();
 
         for (Seat s : Seats) {
-            if (s.Available) seats.add(s);
+            if (s.BookedMember == null) seats.add(s);
         }
         return seats.toArray(new Seat[seats.size()]);
     }

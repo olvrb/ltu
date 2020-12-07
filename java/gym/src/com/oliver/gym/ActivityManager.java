@@ -32,28 +32,28 @@ public class ActivityManager {
 
     public ActivityManager() {
         AddActivity(new Activity("Volleyball", new Seat[] {
-                new Seat("1", true),
-                new Seat("2", true),
-                new Seat("3", true),
-                new Seat("4", true),
-                new Seat("5", false),
-                new Seat("6", true)
+                new Seat("1", null),
+                new Seat("2", null),
+                new Seat("3", null),
+                new Seat("4", null),
+                new Seat("5", null),
+                new Seat("6", null)
         }));
         AddActivity(new Activity("Futsal", new Seat[] {
-                new Seat("1", true),
-                new Seat("2", true),
-                new Seat("3", true),
-                new Seat("4", true),
-                new Seat("5", false),
-                new Seat("6", true)
+                new Seat("1", null),
+                new Seat("2", null),
+                new Seat("3", null),
+                new Seat("4", null),
+                new Seat("5", null),
+                new Seat("6", null)
         }));
         AddActivity(new Activity("Spin", new Seat[] {
-                new Seat("1", true),
-                new Seat("2", true),
-                new Seat("3", true),
-                new Seat("4", true),
-                new Seat("5", false),
-                new Seat("6", true)
+                new Seat("1", null),
+                new Seat("2", null),
+                new Seat("3", null),
+                new Seat("4", null),
+                new Seat("5", null),
+                new Seat("6", null)
         }));
     }
 }

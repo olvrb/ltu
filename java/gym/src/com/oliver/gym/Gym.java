@@ -30,9 +30,16 @@ public class Gym {
     }
 
     private void ActivityBook() {
+        if (CurrentMember == null) {
+            System.out.println("Not logged in");
+            return;
+        }
+
         String[] actOpts = act.GetFormattedActivites();
         PresentOptions(actOpts);
         int i = GetOption(actOpts);
+
+
         // Get activity at selected index
         Activity selectedActivity = act.GetActivity(i);
 
@@ -40,7 +47,7 @@ public class Gym {
         PresentOptions(seatOpts);
         int j = GetOption(seatOpts);
         Seat seat = selectedActivity.GetSeat(j);
-        seat.Available = false;
+        seat.BookedMember = CurrentMember;
 
         System.out.printf("Seat %s booked.", seat.Name);
     }
@@ -99,6 +106,12 @@ public class Gym {
         }
 
         return m.get();
+
+
+
+
+
+        
     }
 
     private String GetPnr() {
