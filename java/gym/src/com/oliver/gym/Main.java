@@ -8,8 +8,6 @@ import static com.oliver.gym.PersonnummerUtils.*;
 public class Main {
 
     public static void main(String[] args) {
-
          Gym gym = new Gym();
-
     }
 }

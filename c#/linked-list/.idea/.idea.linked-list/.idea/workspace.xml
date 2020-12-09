@@ -5,20 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="657305b9-e00a-4c9b-a946-d965888d6c39" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../java/factorial 2/.idea/factorial 2.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/.idea/description.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/.idea/project-template.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../java/kassasystem2/kassasystem2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.linked-list/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.linked-list/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../java/factorial 2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/factorial 2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../java/factorial/src/com/oliver/factorial2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/factorial/src/com/oliver/factorial2/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/gym/src/com/oliver/gym/Gym.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/gym/src/com/oliver/gym/Gym.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/gym/src/com/oliver/gym/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/gym/src/com/oliver/gym/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +69,7 @@
       <workItem from="1603449412556" duration="1607000" />
       <workItem from="1603792363586" duration="4060000" />
       <workItem from="1605216654293" duration="559000" />
+      <workItem from="1607518380832" duration="336000" />
     </task>
     <servers />
   </component>
