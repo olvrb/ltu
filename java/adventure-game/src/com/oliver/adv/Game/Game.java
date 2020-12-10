@@ -66,7 +66,9 @@ public class Game {
         // TODO: Make print room description every time player enters a new Room
         // TODO: Check for items when entering every Room
         // TODO: Check for monsters when entering every Room
-        // TODO: 
+        // TODO: Fight mechanics
+        // TODO: Potion mechanics
+        // TODO: Key mechanics
         while (true) {
             char c = scan.nextLine().toCharArray()[0];
             currentRoom = GetNextRoom(c, currentRoom.getPoint());
@@ -76,9 +78,6 @@ public class Game {
     }
 
     private Room GetNextRoom(char direction, Point current) {
-        // Get direction to look for (whether to use x or y and + or -)
-        boolean down = true;
-        boolean right = true;
         switch (direction) {
             case 'n': {
                 // Pass row as search array and current position, as well as search direction.
