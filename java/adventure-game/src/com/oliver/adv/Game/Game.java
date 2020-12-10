@@ -9,6 +9,7 @@ import com.oliver.adv.Game.AttackEntities.Player;
 import com.oliver.adv.Point;
 import com.oliver.adv.RoomHelpers;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game {
@@ -63,18 +64,32 @@ public class Game {
         Point point = GetNextRoom('n', room.getPoint()).getPoint();
         System.out.printf("%s, %s\n", point.getX(), point.getY());
 
-        // TODO: Make print room description every time player enters a new Room
-        // TODO: Check for items when entering every Room
-        // TODO: Check for monsters when entering every Room
-        // TODO: Fight mechanics
+        // TOD: Make print room description every time player enters a new Room
+        // TOD: Check for items when entering every Room
+        // TOD: Check for monsters when entering every Room
+        // TOD: Fight mechanics
         // TODO: Potion mechanics
         // TODO: Key mechanics
+        // TODO: maybe print a map
         while (true) {
-            char c = scan.nextLine().toCharArray()[0];
-            currentRoom = GetNextRoom(c, currentRoom.getPoint());
-            Point p = currentRoom.getPoint();
-            System.out.printf("%s, %s\n", p.getX(), p.getY());
+            GameLoop();
         }
+    }
+
+    private void GameLoop() {
+        RoomHelpers.PrintRooms(rooms, currentRoom);
+
+        char c = scan.nextLine().toCharArray()[0];
+        currentRoom = GetNextRoom(c, currentRoom.getPoint());
+        /*
+        Point p = currentRoom.getPoint();
+        System.out.printf("%s, %s\n", p.getX(), p.getY());
+
+         */
+    }
+
+    private void EnterRoom() {
+
     }
 
     private Room GetNextRoom(char direction, Point current) {
