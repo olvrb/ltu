@@ -10,11 +10,25 @@ public class Member {
         this.Duration = dur;
     }
 
-    public String Name;
-    public String LastName;
-    public String SSN;
-    public int Duration;
+    private String Name;
+    private String LastName;
+    private String SSN;
+    private int Duration;
+
     public int GetPrice() {
+        // Price + membership fee (100kr)
         return Gym.GetPriceForMonth(Duration) * Duration + 100;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public String getLastName() {
+        return LastName;
+    }
+
+    public String getSSN() {
+        return SSN;
     }
 }

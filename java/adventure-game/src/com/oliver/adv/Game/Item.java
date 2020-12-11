@@ -5,7 +5,8 @@ public abstract class Item {
     private String description;
 
     public Item(String name, String description) {
-
+        this.name = name;
+        this.description = description;
     }
 
     public String getName() {

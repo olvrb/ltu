@@ -4,19 +4,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ActivityManager {
-    private final ArrayList<Activity> activities = new ArrayList<>();
+    private ArrayList<Activity> activities = new ArrayList<>();
 
     public final void AddActivity(Activity act) {
         activities.add(act);
     }
 
     public final Activity[] GetActivities() {
-        return activities.toArray(new Activity[activities.size()]);
+        return activities.toArray(Activity[]::new);
     }
 
     public final Activity GetActivity(String name) {
+        // Find activity by name
         for (Activity act : activities) {
-            if (act.Name == name)
+            if (act.getName() == name)
                 return act;
         }
         return null;
@@ -26,34 +27,49 @@ public class ActivityManager {
         return activities.get(i);
     }
 
+    // Get formatted activities with available seats
     public final String[] GetFormattedActivites() {
-        return Arrays.stream(GetActivities()).map(x -> x.Name).toArray(String[]::new);
+        return Arrays.stream(GetActivities()).filter(x -> x.GetAvailableSeats().length > 0).map(Activity::getName).toArray(String[]::new);
     }
 
     public ActivityManager() {
+        // Add place holder activities. This would be fetched from a persistent database.
         AddActivity(new Activity("Volleyball", new Seat[] {
-                new Seat("1", null),
-                new Seat("2", null),
-                new Seat("3", null),
-                new Seat("4", null),
-                new Seat("5", null),
-                new Seat("6", null)
+                new Seat("1a", null),
+                new Seat("1b", null),
+                new Seat("1c", null),
+                new Seat("2a", null),
+                new Seat("2b", null),
+                new Seat("2c", null),
+                new Seat("3a", null),
+                new Seat("3b", null),
+                new Seat("3c", null)
         }));
         AddActivity(new Activity("Futsal", new Seat[] {
-                new Seat("1", null),
-                new Seat("2", null),
-                new Seat("3", null),
-                new Seat("4", null),
-                new Seat("5", null),
-                new Seat("6", null)
+                new Seat("1a", null),
+                new Seat("1b", null),
+                new Seat("1c", null),
+                new Seat("2a", null),
+                new Seat("2b", null),
+                new Seat("2c", null),
+                new Seat("3a", null),
+                new Seat("3b", null),
+                new Seat("3c", null)
         }));
         AddActivity(new Activity("Spin", new Seat[] {
-                new Seat("1", null),
-                new Seat("2", null),
-                new Seat("3", null),
-                new Seat("4", null),
-                new Seat("5", null),
-                new Seat("6", null)
+                new Seat("1a", null),
+                new Seat("1b", null),
+                new Seat("1c", null),
+                new Seat("2a", null),
+                new Seat("2b", null),
+                new Seat("2c", null),
+                new Seat("3a", null),
+                new Seat("3b", null),
+                new Seat("3c", null)
         }));
+    }
+
+    public ActivityManager(ArrayList<Activity> activities) {
+        this.activities = activities;
     }
 }
