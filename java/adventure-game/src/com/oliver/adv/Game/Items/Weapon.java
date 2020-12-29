@@ -1,5 +1,6 @@
 package com.oliver.adv.Game.Items;
 
+import com.oliver.adv.Game.AttackEntity;
 import com.oliver.adv.Game.Item;
 
 public class Weapon extends Item {
@@ -12,5 +13,10 @@ public class Weapon extends Item {
     public Weapon(String name, String description, int increaseDamage) {
         super(name, description);
         this.increaseDamage = increaseDamage;
+    }
+
+    @Override
+    public void Pickup(AttackEntity entity) {
+
     }
 }

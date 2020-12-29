@@ -17,8 +17,11 @@ public class Door {
 
     public void Unlock(Key key) {
         if (key == null) System.out.printf("No key, can't open door :(\n");
+        else {
+            System.out.println("Door unlocked!");
+            this.locked = false;
+        }
 
-        this.locked = false;
     }
 
     public boolean IsLocked() {

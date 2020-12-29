@@ -27,7 +27,7 @@ public class RoomHelpers {
                     if (currentRoom == room)
                         System.out.print(AnsiColors.ANSI_BLUE + "□\t" + AnsiColors.ANSI_RESET);
                     else if (Arrays.asList(room.GetDiscoverers()).contains(player))
-                        System.out.print(AnsiColors.ANSI_WHITE + "□\t" + AnsiColors.ANSI_RESET);
+                        System.out.print(AnsiColors.ANSI_GREEN + "□\t" + AnsiColors.ANSI_RESET);
                     else
                         System.out.print(AnsiColors.ANSI_WHITE + "□\t" + AnsiColors.ANSI_RESET);
                 } else {

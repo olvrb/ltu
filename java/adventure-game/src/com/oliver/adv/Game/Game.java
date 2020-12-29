@@ -5,7 +5,6 @@ import com.oliver.adv.Game.AttackEntities.*;
 import com.oliver.adv.*;
 
 import java.util.Scanner;
-import java.util.logging.XMLFormatter;
 
 
 /* Assumptions */
@@ -75,7 +74,7 @@ public class Game {
         // x: 1, y: 2
         rooms[1][2] = new Room(new Point(1, 2),
                                "Potion room.",
-                               new Potion("Heal Potion", "Escape death."),
+                               new HealthPotion("Heal Potion", "Escape death."),
                                null,
                                new Door[] {
                                        new Door('e', true),
@@ -86,10 +85,14 @@ public class Game {
         rooms[2][2] = new Room(new Point(2, 2),
                                "Dragon room.",
                                null,
-                               new Monster("DRAGON", 18, 1, new Item[0], "amgery dragoon"),
+                               new Monster("DRAGON",
+                                           18,
+                                           1,
+                                           new Item[] { new Treasure("Golden treasure", "shiny and stuff") },
+                                           "amgery dragoon"),
                                new Door[] {
                                        new Door('w', false),
-                               });
+                                       });
 
 
     }
@@ -103,17 +106,17 @@ public class Game {
         // TOD: Check for monsters when entering every Room
         // TOD: Fight mechanics
         // TOD: Key mechanics
+        // TOD: Potion mechanics
         /* TOD: maybe print a map
          * "Maybe"... Aftermath: needlessly complicated but kinda elegant. 6 hours of hell.
          */
 
         /* TODO if i get bored:
-         * Maps as a 2d linked list? Reference which Room as Door leads to 🤔
+         * Maps as a 2d linked list? Reference which Room a Door leads to 🤔
          */
 
 
         // TODO: Make monsters drop loot
-        // TODO: Potion mechanics
 
         while (true) {
             GameLoop();

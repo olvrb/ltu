@@ -13,6 +13,7 @@ import java.util.Optional;
 import java.util.concurrent.locks.Lock;
 
 public class Room {
+    // Each room stores its grid coordinates.
     private Point point;
 
     private Door[] doors;
@@ -23,6 +24,7 @@ public class Room {
     // Will be null if no monster.
     private Monster monster;
 
+    // Stores every entity that has discovered the room. Is used
     private ArrayList<AttackEntity> discoveredBy;
 
 
@@ -65,6 +67,7 @@ public class Room {
     }
 
     public void Discover(AttackEntity player) {
+        // TODO: Check for dupes
         this.discoveredBy.add(player);
     }
 
@@ -77,7 +80,7 @@ public class Room {
         if (monster != null) {
             // Monster attacks player.
             // Fight plays out
-            monster.Attack(player);
+            monster.Attack(player, this);
         }
 
         // TODO: Maybe give user option to not pickup item...
