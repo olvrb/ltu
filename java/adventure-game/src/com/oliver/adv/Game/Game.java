@@ -23,13 +23,11 @@ public class Game {
     private Player player;
     public Room[][] rooms;
     private Room currentRoom;
-    private Scanner scan;
 
 
     public void StartGame() {
         // TODO: allow user to input name before starting game.
         player = new Player(10, 1, new Item[0], "Sirius");
-        scan = new Scanner(System.in);
 
 
         // Rooms are set up in a 3x3 grid. Can be changed later, just to fit the required game.
@@ -107,6 +105,7 @@ public class Game {
         // TOD: Fight mechanics
         // TOD: Key mechanics
         // TOD: Potion mechanics
+        // TOD: Make monsters drop loot
         /* TOD: maybe print a map
          * "Maybe"... Aftermath: needlessly complicated but kinda elegant. 6 hours of hell.
          */
@@ -116,7 +115,6 @@ public class Game {
          */
 
 
-        // TODO: Make monsters drop loot
 
         while (true) {
             GameLoop();
