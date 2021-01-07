@@ -1,11 +1,12 @@
-package com.oliver.adv.Game;
+package com.oliver.adv.Game.AttackEntities;
 
-import com.oliver.adv.FightResult;
+import com.oliver.adv.Game.Door;
+import com.oliver.adv.Game.Items.Item;
+import com.oliver.adv.Helpers.FightResult;
 import com.oliver.adv.Game.Items.Inventory;
 import com.oliver.adv.Game.Items.Key;
 import com.oliver.adv.Game.Items.Weapon;
 
-import java.io.ObjectStreamException;
 import java.util.Arrays;
 
 public abstract class AttackEntity {
@@ -39,7 +40,7 @@ public abstract class AttackEntity {
         door.Unlock(getKey());
     }
 
-    public void Attack(AttackEntity opponent, Room room) {
+    public void Attack(AttackEntity opponent) {
         // Stop entity from attacking if dead =)
         int i = 0;
         while (this.Alive() && opponent.Alive()) {
@@ -47,14 +48,14 @@ public abstract class AttackEntity {
             if (i % 2 == 0) {
                 opponent.Damage(this);
             } else {
-                Damage(opponent);
+                this.Damage(opponent);
             }
 
             i++;
         }
 
         // Deduce winner and loser
-        FightResult result = GetWinner(this, opponent);
+        FightResult result = getWinner(this, opponent);
 
         AttackEntity loser = result.getLoser();
         AttackEntity winner = result.getWinner();
@@ -76,7 +77,6 @@ public abstract class AttackEntity {
 
             System.out.printf("%s attacks %s for %s damage!\n", entity.getName(), this.getName(), entity.getDamage());
         }
-
     }
 
     public void DropInvetoryTo(AttackEntity opponent) {
@@ -106,6 +106,7 @@ public abstract class AttackEntity {
     private int getDamage() {
         // Start with base damage.
         int tempDamage = damage;
+
         for (Item w : inventory.GetItems()) {
             // If item is a Weapon, count its damage increase.
             if (w instanceof Weapon) {
@@ -117,19 +118,17 @@ public abstract class AttackEntity {
 
 
     private Key getKey() {
-        // Find first item that is a key.
+        // Find first item that is a key, else null.
         return (Key)Arrays.stream(this.inventory.GetItems())
                           .filter(x -> x instanceof Key)
                           .findFirst()
                           .orElse(null);
     }
 
-    private static FightResult GetWinner(AttackEntity one, AttackEntity two) {
-        FightResult result = new FightResult(one.getHp() > two.getHp() ? one : two,
+    private static FightResult getWinner(AttackEntity one, AttackEntity two) {
+        // Self explanatory...
+        // Winner is entity with highest hp, loser is entity with least hp.
+        return new FightResult(one.getHp() > two.getHp() ? one : two,
                                              one.getHp() > two.getHp() ? two : one);
-        return result; /*
-        // One will always be over the other
-        return one.getHp() > two.getHp() ? one : two;
-        */
     }
 }

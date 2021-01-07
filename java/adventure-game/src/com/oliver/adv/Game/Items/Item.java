@@ -1,8 +1,10 @@
-package com.oliver.adv.Game;
+package com.oliver.adv.Game.Items;
+
+import com.oliver.adv.Game.AttackEntities.AttackEntity;
 
 public abstract class Item {
-    private String name;
-    private String description;
+    private final String name;
+    private final String description;
 
     public Item(String name, String description) {
         this.name = name;

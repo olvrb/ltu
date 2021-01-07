@@ -1,4 +1,4 @@
-package com.oliver.adv;
+package com.oliver.adv.Helpers;
 
 import java.util.Scanner;
 import java.util.function.Predicate;
@@ -7,7 +7,7 @@ public class InputHelper {
     private static final Scanner scan = new Scanner(System.in);
 
     public static char GetChar(String question, Predicate<Character> condition) {
-        // ö
+        // Temporary character which isn't a valid direction.
         char c = (char)0;
         boolean firstTime = true;
 

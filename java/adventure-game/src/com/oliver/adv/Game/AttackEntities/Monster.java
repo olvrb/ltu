@@ -1,7 +1,6 @@
 package com.oliver.adv.Game.AttackEntities;
 
-import com.oliver.adv.Game.AttackEntity;
-import com.oliver.adv.Game.Item;
+import com.oliver.adv.Game.Items.Item;
 
 public class Monster extends AttackEntity {
     private String description;

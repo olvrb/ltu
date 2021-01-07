@@ -1,7 +1,6 @@
 package com.oliver.adv.Game.Items;
 
-import com.oliver.adv.Game.AttackEntity;
-import com.oliver.adv.Game.Item;
+import com.oliver.adv.Game.AttackEntities.AttackEntity;
 
 public class Weapon extends Item {
     private final int increaseDamage;

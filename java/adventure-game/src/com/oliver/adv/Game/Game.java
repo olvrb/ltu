@@ -2,12 +2,12 @@ package com.oliver.adv.Game;
 
 import com.oliver.adv.Game.Items.*;
 import com.oliver.adv.Game.AttackEntities.*;
-import com.oliver.adv.*;
+import com.oliver.adv.Helpers.InputHelper;
+import com.oliver.adv.Helpers.Point;
+import com.oliver.adv.Helpers.RoomHelpers;
 
-import java.util.Scanner;
 
-
-/* Assumptions */
+/*** Assumptions ***/
 
 // Available directions do not need to be printed, as that is depicted on the map
 
@@ -17,11 +17,35 @@ import java.util.Scanner;
 
 // Missing blocks in example drawing are just red squares on map
 
-// A user will have their weapon in their hand, and it will still be in their inventory.
+// ~~A user will have their weapon in their hand, and it will still be in their inventory.~~ This is no longer a thing.
+
+// An entity's damage is determined by:
+//   * base damage
+//   * every weapon in their intervory's damage increase
+
+// Dragon is not printed :(
+
+// Player can walk right through empty spaces. This is by design, but doesn't feel very intuitive.
+
+
+/*** Improvements to be made ***/
+
+// A RoomManager to declutter the game class? Most of the logic in Game would be moved. 7 jan 22:00 is too late :(
+
+// Make the room map a kind of 2d linked list? Have each door point to a room?
+
+// Allow player to exit =)
+
+
+/*** Naming convention ***/
+
+// Public fields and methods: PascalCase
+// private fields, local variables, and get/setter methods: camelCase
+
 
 public class Game {
     private Player player;
-    public Room[][] rooms;
+    private Room[][] rooms;
     private Room currentRoom;
 
 
@@ -99,6 +123,7 @@ public class Game {
         currentRoom = rooms[0][1];
         player.EnterRoom(currentRoom);
 
+        // Done:
         // TOD: Make print room description every time player enters a new Room
         // TOD: Check for items when entering every Room
         // TOD: Check for monsters when entering every Room
@@ -106,31 +131,34 @@ public class Game {
         // TOD: Key mechanics
         // TOD: Potion mechanics
         // TOD: Make monsters drop loot
+
         /* TOD: maybe print a map
          * "Maybe"... Aftermath: needlessly complicated but kinda elegant. 6 hours of hell.
+         * 2 weeks later I take the elegant part back...
          */
 
         /* TODO if i get bored:
-         * Maps as a 2d linked list? Reference which Room a Door leads to 🤔
+         * Map as a 2d linked list? Reference which Room a Door leads to 🤔
          */
 
 
 
+        // Core game loop. Will run until program is closed.
         while (true) {
-            GameLoop();
+            gameLoop();
         }
     }
 
-    private void GameLoop() {
+    private void gameLoop() {
         RoomHelpers.PrintRooms(rooms, currentRoom, player);
-        EnterRoom(GetDirection());
+        enterRoom(getDirection());
     }
 
-    private char GetDirection() {
+    private char getDirection() {
         return InputHelper.GetChar("Enter direction:", x -> currentRoom.IsValidDirection(x));
     }
 
-    private void EnterRoom(char c) {
+    private void enterRoom(char c) {
         currentRoom = GetNextRoom(c, currentRoom.getPoint());
         player.EnterRoom(currentRoom);
     }
@@ -140,25 +168,25 @@ public class Game {
             case 'n': {
                 // Pass row as search array and current position, as well as search direction.
                 // Vertical search
-                Point p = GetNextRoomForDirection(rooms[current.getX()], false, current.getY());
+                Point p = getNextRoomForDirection(rooms[current.getX()], false, current.getY());
                 return rooms[p.getX()][p.getY()];
             }
             case 's': {
                 // Pass row as search array and current position, as well as search direction.
                 // Vertical search
-                Point p = GetNextRoomForDirection(rooms[current.getX()], true, current.getY());
+                Point p = getNextRoomForDirection(rooms[current.getX()], true, current.getY());
                 return rooms[p.getX()][p.getY()];
             }
             case 'e': {
                 // Pass column as search array and current position, as well as search direction.
                 // Horizontal search
-                Point p = GetNextRoomForDirection(RoomHelpers.GetColumn(rooms, current.getY()), true, current.getX());
+                Point p = getNextRoomForDirection(RoomHelpers.GetColumn(rooms, current.getY()), true, current.getX());
                 return rooms[p.getX()][p.getY()];
             }
             case 'w': {
                 // Pass column as search array and current position, as well as search direction.
                 // Horizontal search
-                Point p = GetNextRoomForDirection(RoomHelpers.GetColumn(rooms, current.getY()), false, current.getX());
+                Point p = getNextRoomForDirection(RoomHelpers.GetColumn(rooms, current.getY()), false, current.getX());
                 return rooms[p.getX()][p.getY()];
             }
             default:
@@ -168,7 +196,7 @@ public class Game {
 
     // awayFromZero signifies if the player is moving south or west, as that is further from 0, 0.
     // If the player is moving east or north, awayFromZero will be false, as the player will be moving closer to 0, 0
-    private Point GetNextRoomForDirection(Room[] arr, boolean awayFromZero, int currentIndex) {
+    private Point getNextRoomForDirection(Room[] arr, boolean awayFromZero, int currentIndex) {
         // Create temporary non-existant room.
         Room temp = new Room(new Point(-1, -1));
 

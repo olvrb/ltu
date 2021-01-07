@@ -1,7 +1,6 @@
 package com.oliver.adv.Game.Items;
 
-import com.oliver.adv.Game.AttackEntity;
-import com.oliver.adv.Game.Item;
+import com.oliver.adv.Game.AttackEntities.AttackEntity;
 
 public class HealthPotion extends Item {
     public HealthPotion(String name, String description) {

@@ -1,6 +1,6 @@
-package com.oliver.adv;
+package com.oliver.adv.Helpers;
 
-import com.oliver.adv.Game.AttackEntity;
+import com.oliver.adv.Game.AttackEntities.AttackEntity;
 
 public class FightResult {
     private final AttackEntity winner;

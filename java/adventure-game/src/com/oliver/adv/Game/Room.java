@@ -1,16 +1,15 @@
 package com.oliver.adv.Game;
 
+import com.oliver.adv.Game.AttackEntities.AttackEntity;
 import com.oliver.adv.Game.AttackEntities.Monster;
 import com.oliver.adv.Game.AttackEntities.Player;
+import com.oliver.adv.Game.Items.Item;
 import com.oliver.adv.Game.Items.Key;
-import com.oliver.adv.InputHelper;
-import com.oliver.adv.Point;
+import com.oliver.adv.Helpers.InputHelper;
+import com.oliver.adv.Helpers.Point;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.locks.Lock;
 
 public class Room {
     // Each room stores its grid coordinates.
@@ -49,6 +48,7 @@ public class Room {
         this.item = item;
         this.monster = monster;
         this.doors = doors;
+
         this.discoveredBy = new ArrayList<>();
     }
 
@@ -80,7 +80,7 @@ public class Room {
         if (monster != null) {
             // Monster attacks player.
             // Fight plays out
-            monster.Attack(player, this);
+            monster.Attack(player);
         }
 
         // TODO: Maybe give user option to not pickup item...
@@ -94,6 +94,7 @@ public class Room {
 
         Door[] lockedDoors = LockedDoors();
         if (lockedDoors.length > 0) {
+
             for (Door d : lockedDoors) {
                 System.out.printf("You feel the %s door. It's locked!\n", d.getPosition());
                 if (InputHelper.YesNo("Unlock?")) {

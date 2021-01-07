@@ -1,5 +1,6 @@
-package com.oliver.adv;
+package com.oliver.adv.Helpers;
 
+// Helper class simply to store x & y coordinates.
 public class Point {
     private int x;
     private int y;
