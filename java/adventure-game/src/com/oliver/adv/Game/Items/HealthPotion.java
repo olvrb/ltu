@@ -9,6 +9,7 @@ public class HealthPotion extends Item {
 
     @Override
     public void Pickup(AttackEntity entity) {
+
         entity.RestoreHealth();
         System.out.printf("%s has restored its health to %dhp\n", entity.getName(), entity.getHp());
     }

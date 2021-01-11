@@ -47,6 +47,11 @@ public class Game {
     private Player player;
     private Room[][] rooms;
     private Room currentRoom;
+    public static String test = "test";
+
+    public static void main(String[] args) {
+
+    }
 
 
     public void StartGame() {
