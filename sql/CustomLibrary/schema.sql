@@ -36,7 +36,7 @@ CREATE TABLE `Category` (
 CREATE TABLE `RentalObject` (
     `ObjectNr`   VARCHAR(36) PRIMARY KEY,
     `Title`      VARCHAR(1500) NOT NULL,
-    `CategoryId` VARCHAR(36)   NOT NULL,
+    `CategoryId` VARCHAR(36),
     FOREIGN KEY (CategoryId) REFERENCES Category (CategoryNr) ON UPDATE CASCADE ON DELETE SET NULL
 );
 
