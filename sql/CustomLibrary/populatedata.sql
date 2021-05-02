@@ -25,14 +25,14 @@ INSERT INTO RentalObject (ObjectNr, Title, CategoryId)
 VALUES (@obj, 'book nr 1', NULL);
 
 INSERT INTO Edition (ISBN, CreatorName, PublicationYear, Publisher, Count, ObjectNr)
-VALUES ('123456789123', 'boop', DATE('2021-01-01'), 'boop publishing', 10, @obj);
+VALUES ('123456789123', 'boop', year('2021-01-01'), 'boop publishing', 10, @obj);
 
 SET @physCop = uuid();
 INSERT INTO PhysicalCopy (PhysicalCopyNr, Location, EditionNr)
 VALUES (@physCop, 'back row', '123456789123');
 
 INSERT INTO Rental (RentalNr, StartDate, EndDate, PhysicalCopyNr, RentalSummaryNr)
-VALUES (uuid(), curdate(), curdate() + 10, @physCop, @rentPer),
+VALUES (@test = uuid(), curdate(), curdate() + 10, @physCop, @rentPer),
        (uuid(), curdate(), curdate() + 10, @physCop, @rentPer),
        (uuid(), curdate(), curdate() + 10, @physCop, @rentPer),
        (uuid(), curdate(), curdate() + 10, @physCop, @rentPer),
@@ -44,4 +44,4 @@ VALUES (uuid(), curdate(), curdate() + 10, @physCop, @rentPer);
 
 UPDATE Rental
 SET Returned = TRUE
-WHERE RentalNr = '7ca73b80-6b95-11eb-9731-d243d976c166';
+WHERE RentalNr = @test;

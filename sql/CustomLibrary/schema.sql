@@ -51,7 +51,7 @@ CREATE TABLE `CreatorRentalObject` (
 CREATE TABLE `Edition` (
     `ISBN`            VARCHAR(13) PRIMARY KEY,
     `CreatorName`     VARCHAR(5000), -- DD
-    `PublicationYear` DATE,
+    `PublicationYear` YEAR,
     `Publisher`       VARCHAR(100),
     `Count`           INT,           -- DD
     `ObjectNr`        VARCHAR(36) NOT NULL,
@@ -75,3 +75,8 @@ CREATE TABLE `Rental` (
     FOREIGN KEY (PhysicalCopyNr) REFERENCES PhysicalCopy (PhysicalCopyNr) ON UPDATE CASCADE ON DELETE NO ACTION,
     FOREIGN KEY (RentalSummaryNr) REFERENCES RentalSummary (RentalSummaryNr) ON UPDATE CASCADE ON DELETE SET NULL
 );
+
+CREATE INDEX RentalObjectTitle ON RentalObject (Title(500));
+CREATE INDEX EditionCreator ON Edition (CreatorName(500));
+CREATE INDEX EditionPublisher ON Edition (Publisher);
+CREATE INDEX CustomerPersonNr ON Customer (PersonNr);

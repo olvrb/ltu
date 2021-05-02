@@ -27,7 +27,7 @@ BEGIN
         UPDATE
             Rental
                 JOIN RentalSummary RS ON Rental.RentalSummaryNr = RS.RentalSummaryNr
-                JOIN Customer C ON C.CustomerNr = RS.CustomerNr
+                JOIN Customer C ON RS.CustomerNr = C.CustomerNr
         SET CurrentlyBorrowed = CurrentlyBorrowed - 1
         WHERE RentalNr = new.RentalNr;
     END IF;
@@ -38,28 +38,22 @@ DROP TRIGGER IF EXISTS MaxRental;
 CREATE TRIGGER MaxRental
     BEFORE INSERT
     ON Rental
-    FOR EACH ROW 
+    FOR EACH ROW
 BEGIN
     -- Get corresponding Customer
-    SELECT C.Type, c.CurrentlyBorrowed, c.Pincode
-    INTO @customerType, @currentlyBorrowed, @pin
+    SELECT C.Type, c.CurrentlyBorrowed
+    INTO @customerType, @currentlyBorrowed
     FROM RentalSummary
              JOIN Customer C ON C.CustomerNr = RentalSummary.CustomerNr
     WHERE new.RentalSummaryNr = RentalSummary.RentalSummaryNr;
 
 
-    IF @customerType = 'RESEARCHER' THEN
-        IF @currentlyBorrowed >= 20 THEN
-            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Researchers can only borrow 20 books at once.';
-        END IF;
-    ELSEIF @customerType = 'TEACHER' THEN
-        IF @currentlyBorrowed >= 10 THEN
-            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Teachers can only borrow 10 books at once.';
-        END IF;
-    ELSEIF @customerType = 'STUDENT' THEN
-        IF @currentlyBorrowed >= 5 THEN
-            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Students can only borrow 5 books at once.';
-        END IF;
+    IF @customerType = 'RESEARCHER' AND @currentlyBorrowed >= 20 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Researchers can only borrow 20 books at once.';
+    ELSEIF @customerType = 'TEACHER' AND @currentlyBorrowed >= 10 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Teachers can only borrow 10 books at once.';
+    ELSEIF @customerType = 'STUDENT' AND @currentlyBorrowed >= 5 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Students can only borrow 5 books at once.';
     END IF;
 END;
 
