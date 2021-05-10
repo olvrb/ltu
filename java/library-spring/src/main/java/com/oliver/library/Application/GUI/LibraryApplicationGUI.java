@@ -1,15 +1,15 @@
-package com.oliver.library;
+package com.oliver.library.Application.GUI;
 
 import com.oliver.library.Application.Entities.Abstract.Rental;
 import com.oliver.library.Application.Entities.Inventory.RentalObject;
 import com.oliver.library.Application.Entities.User.User;
 import com.oliver.library.Application.Exceptions.InvalidLoanException;
 import com.oliver.library.Application.Exceptions.RentalObjectRentedException;
-import com.oliver.library.Application.GUIViews.Authentication.SignInDialog;
-import com.oliver.library.Application.GUIViews.Authentication.SignUpDialog;
-import com.oliver.library.Application.GUIViews.EditRentalObjectDialog;
-import com.oliver.library.Application.GUIViews.MainView;
-import com.oliver.library.Application.GUIViews.Rental.ReturnDialog;
+import com.oliver.library.Application.GUI.GUIViews.Authentication.SignInDialog;
+import com.oliver.library.Application.GUI.GUIViews.Authentication.SignUpDialog;
+import com.oliver.library.Application.GUI.GUIViews.EditRentalObjectDialog;
+import com.oliver.library.Application.GUI.GUIViews.MainView;
+import com.oliver.library.Application.GUI.GUIViews.Rental.ReturnDialog;
 import com.oliver.library.Application.Services.AdminService;
 import com.oliver.library.Application.Services.LibraryService;
 import com.oliver.library.Application.Services.UserRentalService;
