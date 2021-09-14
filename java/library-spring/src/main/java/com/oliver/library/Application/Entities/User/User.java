@@ -73,10 +73,23 @@ public abstract class User extends BaseEntity {
         return this.rentals;
     }
 
-    public Set<Rental> getCurrentRentals() {
+    public void setRentals(Set<Rental> rentals) {
+        this.rentals = rentals;
+    }
+
+    // Get all rentals this user has not returned.
+    public Set<Rental> getUnreturnedRentals() {
         return this.getRentals()
                    .stream()
                    .filter(x -> !x.returned())
+                   .collect(Collectors.toSet());
+    }
+
+    // Get all currently rented rentalObjects
+    public Set<RentalObject> getCurrentRentalObjects() {
+        return this.getUnreturnedRentals()
+                   .stream()
+                   .map(x -> x.getRentalObject())
                    .collect(Collectors.toSet());
     }
 
@@ -98,8 +111,9 @@ public abstract class User extends BaseEntity {
         this.name = name;
     }
 
+    // Amount of currently rented objects
     public int currentlyRented() {
-        return this.getCurrentRentals()
+        return this.getUnreturnedRentals()
                    .size();
     }
 

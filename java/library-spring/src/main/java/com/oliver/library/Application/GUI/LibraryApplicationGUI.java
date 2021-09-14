@@ -9,16 +9,19 @@ import com.oliver.library.Application.GUI.GUIViews.Authentication.SignInDialog;
 import com.oliver.library.Application.GUI.GUIViews.Authentication.SignUpDialog;
 import com.oliver.library.Application.GUI.GUIViews.EditRentalObjectDialog;
 import com.oliver.library.Application.GUI.GUIViews.MainView;
+import com.oliver.library.Application.GUI.GUIViews.Rental.CurrentLoansDialog;
 import com.oliver.library.Application.GUI.GUIViews.Rental.ReturnDialog;
-import com.oliver.library.Application.Services.AdminService;
-import com.oliver.library.Application.Services.LibraryService;
-import com.oliver.library.Application.Services.UserRentalService;
-import com.oliver.library.Application.Services.UserService;
+import com.oliver.library.Application.GUI.GUIViews.Rental.UnreturnedLoansDialog;
+import com.oliver.library.Application.Services.DataServices.AdminService;
+import com.oliver.library.Application.Services.DataServices.LibraryService;
+import com.oliver.library.Application.Services.DataServices.UserRentalService;
+import com.oliver.library.Application.Services.DataServices.UserService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 
+import javax.annotation.PostConstruct;
 import javax.naming.AuthenticationException;
 import javax.swing.*;
 import java.awt.*;
@@ -45,6 +48,7 @@ public class LibraryApplicationGUI {
 
     @Autowired
     private AdminService adminService;
+
 
     public LibraryApplicationGUI() {
         this.initializeUI();
@@ -73,6 +77,11 @@ public class LibraryApplicationGUI {
         this.setCentered();
         // this.mainFrame.pack();
         this.mainFrame.setVisible(true);
+    }
+
+    @PostConstruct
+    private void init() {
+        this.mainView.init();
     }
 
     private void setCentered() {
@@ -106,6 +115,14 @@ public class LibraryApplicationGUI {
         return this.showDialog(new SignInDialog(this));
     }
 
+    public void showCurrentLoansDialog() {
+        this.showDialog(new CurrentLoansDialog(this));
+    }
+
+    public void showUnreturnedLoansDialog() {
+        this.showDialog(new UnreturnedLoansDialog(this));
+    }
+
 
     // Update gui to match signed in state.
     public void signInOk(User user) {
@@ -118,7 +135,6 @@ public class LibraryApplicationGUI {
     // Standard procedure for showing a dialog.
     private JDialog showDialog(JDialog dialog) {
         dialog.pack();
-        dialog.setLocationByPlatform(true);
         dialog.setLocationRelativeTo(this.mainFrame);
         dialog.setVisible(true);
         return dialog;
@@ -138,6 +154,7 @@ public class LibraryApplicationGUI {
 
 
     public boolean authenticateUser(String ssn, String pw) {
+        // Try to auth user with provided credentials. If fails, show error
         try {
             User user = this.userService.getAuthenticatedUser(ssn, pw);
             this.signInOk(user);
@@ -164,6 +181,7 @@ public class LibraryApplicationGUI {
         return true;
     }
 
+    // Null out current user, update user info, and set correct state.
     public void signOut() {
         this.setCurrentUser(null);
         this.mainView.updateUserInfo(null);
@@ -192,6 +210,8 @@ public class LibraryApplicationGUI {
         }
     }
 
+    // Old search method
+    @Deprecated
     public List<RentalObject> search(String searchString) {
         return this.libraryService.getRentalObjectsByTitle(searchString);
     }
@@ -207,19 +227,22 @@ public class LibraryApplicationGUI {
         }
     }
 
+    // Can edit information if is signed in and user is admin.
     public boolean canEdit() {
         return this.signedIn() && this.getCurrentUser()
                                       .isAdmin();
     }
 
     public boolean signedIn() {
-        return this.currentUser != null;
+        return this.getCurrentUser() != null;
     }
 
 
     // TODO: Merge loan and reserve into loanOrReserve.
     public void loan(RentalObject object) {
         // TODO: Format better?
+
+        // Try and loan object and show confirmation (receipt). Else show error.
         try {
             Rental r = this.userRentalService.loan(this.getCurrentUser(), object);
             this.quickMessageDialog(String.format("%s (id: %s) rented from\n%s \nuntil \n%s.",
@@ -228,12 +251,15 @@ public class LibraryApplicationGUI {
                                                   r.getStartDate(),
                                                   r.getReturnDate()
                                                    .toString()));
+
+            this.refreshUser();
         } catch (InvalidLoanException e) {
             this.showError(e);
         }
     }
 
     public void reserve(RentalObject object) {
+        // Try and reserve object and show confirmation (receipt). Else show error.
         try {
             Rental r = this.userRentalService.reserve(this.getCurrentUser(), object, object.getNextRentDate());
             this.quickMessageDialog(String.format("%s (id: %s) reserved from\n%s \nuntil \n%s.",
@@ -242,16 +268,18 @@ public class LibraryApplicationGUI {
                                                   r.getStartDate(),
                                                   r.getReturnDate()
                                                    .toString()));
+            this.refreshUser();
         } catch (InvalidLoanException e) {
             this.showError(e);
         }
     }
 
-    public boolean returnObject(String id) {
+    public boolean returnObject(RentalObject obj) {
         // If no rental is found, show error.
         try {
-            RentalObject obj = this.userRentalService.markRentalStatusForRentalObjectId(id, true);
+            this.userRentalService.markRentalStatusForRentalObject(obj, true);
             this.quickMessageDialog(String.format("Returned object %s (%s)", obj.getTitle(), obj.getId()));
+            this.refreshUser();
         } catch (NotFoundException e) {
             this.showError(e);
             return false;
@@ -259,7 +287,22 @@ public class LibraryApplicationGUI {
         return true;
     }
 
+    // Method overload.
+    public boolean returnObject(String id) {
+        return this.returnObject(this.userRentalService.getRentalObjectById(id));
+    }
+
+
     public void edit(RentalObject obj) {
         this.showDialog(new EditRentalObjectDialog(this, obj));
+    }
+
+    // To be called after changing user rentals in some way, as it is not updated automatically in the currentUser object.
+    public void refreshUser() {
+        this.userService.refreshUserRentals(this.getCurrentUser());
+    }
+
+    public List<RentalObject> getUnreturnedRentalObjects() {
+        return this.libraryService.getUnreturnedRentalObjects();
     }
 }

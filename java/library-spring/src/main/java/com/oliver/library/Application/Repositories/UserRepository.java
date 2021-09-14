@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Optional;
 import java.util.Set;
 
+// Define user transactions
 public interface UserRepository extends CrudRepository<User, String> {
 
     Set<User> findByName(String name);
@@ -13,4 +14,6 @@ public interface UserRepository extends CrudRepository<User, String> {
     User findFirstByName(String name);
 
     Optional<User> findBySsn(String ssn);
+
+    Optional<User> findById(String id);
 }

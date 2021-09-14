@@ -9,8 +9,8 @@ public class Main {
         // 10!
         System.out.println(factorial(10));
 
-        // 30!
-        System.out.println(factorial(30));
+        // Allt över 12! ger int overflow
+        System.out.println(factorial(12));
     }
 
     private static int factorial(int x) {

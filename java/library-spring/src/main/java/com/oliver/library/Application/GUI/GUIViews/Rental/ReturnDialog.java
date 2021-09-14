@@ -1,6 +1,6 @@
 package com.oliver.library.Application.GUI.GUIViews.Rental;
 
-import com.oliver.library.Application.GUI.GUIViews.Templates.BaseJDialog;
+import com.oliver.library.Application.GUI.GUIViews.Templates.GUIView;
 import com.oliver.library.Application.GUI.LibraryApplicationGUI;
 
 import javax.swing.*;
@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class ReturnDialog extends BaseJDialog {
+public class ReturnDialog extends GUIView {
     private JPanel contentPane;
 
     private JButton buttonOK;
@@ -43,6 +43,7 @@ public class ReturnDialog extends BaseJDialog {
         return this.gui;
     }
 
+    // Button and various component listeners
     private void setUpListeners() {
         this.buttonOK.addActionListener(e -> ReturnDialog.this.onOK());
 

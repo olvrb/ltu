@@ -12,7 +12,7 @@ import java.util.Set;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class RentalObject extends BaseEntity {
     @SuppressWarnings("unused")
-    @OneToMany(mappedBy = "rentalObject", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "rentalObject", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Rental> rentals;
 
     private String title;
@@ -24,10 +24,6 @@ public abstract class RentalObject extends BaseEntity {
     private String description;
 
     private String author;
-
-    //    @ManyToMany(fetch = FetchType.EAGER)
-    //    @JoinTable(name = "rental_object_collaborators", joinColumns = @JoinColumn(name = "rental_object_id"), inverseJoinColumns = @JoinColumn(name = "collaborators_id"))
-    //    private Set<Collaborator> collaborators;
 
     public RentalObject() {
 
@@ -57,19 +53,20 @@ public abstract class RentalObject extends BaseEntity {
 
     public boolean isRented() {
         // If RentalObject has at least one unreturned rental, it's deemed rented.
-        return this.getCurrentRental() != null;
+        return this.getMostRecentRental() != null;
     }
 
     // Find the first Rental that is currently not returned.
-    public Rental getCurrentRental() {
+    public Rental getMostRecentRental() {
         for (Rental r : this.getRentals()) {
             if (!r.returned()) return r;
         }
         return null;
     }
 
+    // Get next date this object can be rented/reserved
     public Date getNextRentDate() {
-        return this.getCurrentRental()
+        return this.getMostRecentRental()
                    .getReturnDate();
     }
 
@@ -84,10 +81,6 @@ public abstract class RentalObject extends BaseEntity {
     public String getDescription() {
         return this.description;
     }
-
-    //    public Set<Collaborator> getCollaborators() {
-    //        return this.collaborators;
-    //    }
 
     @Override
     public String toString() {
